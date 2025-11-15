@@ -8,8 +8,3 @@ if NOT [%ERRORLEVEL%] == [0] (
 )
 
 set /p dotnetPath=<%~dp0artifacts\toolset\sdk.txt
-
-:: Disable first run since we want to control all package sources
-set DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-
-call "%dotnetPath%\dotnet.exe" %*

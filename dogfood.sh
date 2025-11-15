@@ -1,20 +1,3 @@
-if [ -z "$ZSH_VERSION" ]; then
-  source="${BASH_SOURCE[0]}"
-  # resolve $SOURCE until the file is no longer a symlink
-  while [[ -h $source ]]; do
-    scriptroot="$( cd -P "$( dirname "$source" )" && pwd )"
-    source="$(readlink "$source")"
-
-    # if $source was a relative symlink, we need to resolve it relative to the path where the
-    # symlink file was located
-    [[ $source != /* ]] && source="$scriptroot/$source"
-  done
-  scriptroot="$( cd -P "$( dirname "$source" )" && pwd )"
-else
-  # :A will resolve all symlinks, :h will truncate last path component leaving you with a directory name
-  scriptroot=${0:A:h}
-fi
-
 REPO_ROOT=$(cd "${scriptroot}";pwd)
 SDK_PATH=$REPO_ROOT/artifacts/bin/dotnet-tests
 if [ ! -x "$SDK_PATH/dotnet" ]; then
